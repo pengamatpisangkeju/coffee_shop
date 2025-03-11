@@ -1,0 +1,1 @@
+<p>Cashier dashboard</p>

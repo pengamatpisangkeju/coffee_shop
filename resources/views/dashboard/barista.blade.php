@@ -1,0 +1,1 @@
+<p>Barista dashboard</p>

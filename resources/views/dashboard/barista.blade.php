@@ -1,1 +1,1 @@
-<p>Barista dashboard</p>
+<x-admin-layout></x-admin-layout>

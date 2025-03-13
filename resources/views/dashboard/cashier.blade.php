@@ -1,1 +1,1 @@
-<p>Cashier dashboard</p>
+<x-admin-layout></x-admin-layout>

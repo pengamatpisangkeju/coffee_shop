@@ -17,4 +17,8 @@ class Manager extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function cashflow() {
+        return $this->hasMany(Cashflow::class);
+    }
 }

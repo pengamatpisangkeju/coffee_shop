@@ -21,4 +21,12 @@ class Item extends Model
     public function itemCategory() {
         return $this->hasMany(ItemCategory::class);
     }
+
+    public function itemSupply() {
+        return $this->hasMany(ItemSupply::class);
+    }
+
+    public function orderDetail() {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

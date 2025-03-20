@@ -11,6 +11,9 @@
   @endpush
 
   <div class="card">
+    <div class="card-header">
+    <a href="{{ route('item.create') }}" class="btn btn-primary">Create Item</a>
+    </div>
     <div class="card-body">
     <table class="table table-bordered table-striped datatable">
       <thead>
@@ -53,16 +56,22 @@
       url: '{{ route('item.index') }}'
       },
       columns: [
-      { data: 'id', name: 'id' },
+        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
       { data: 'name', name: 'name' },
-      { data: 'capital_price', name: 'capital_price' },
-      { data: 'selling_price', name: 'selling_price' },
-      { data: 'qty', name: 'qty' },
-      { data: 'image', name: 'image' },
-      { data: 'action', name: 'action' },
+      { data: 'capital_price', name: 'capital_price', searchable: false },
+      { data: 'selling_price', name: 'selling_price', searchable: false },
+      { data: 'qty', name: 'qty', searchable: false },
+      { data: 'image', name: 'image', orderable: false, searchable: false },
+      { data: 'action', name: 'action', orderable: false, searchable: false },
       ]
     })
     });
+
+    function confirmDelete(itemId) {
+    if (confirm('Delete this item?')) {
+      document.getElementById('delete-form-' + itemId).submit();
+    }
+    }
     </script>
   @endpush
 

@@ -27,7 +27,7 @@ Route::group([
         Route::get('/create', [ItemController::class, 'create'])->name('item.create');
         Route::post('/', [ItemController::class, 'store'])->name('item.store');
         Route::get('/{item}', [ItemController::class, 'edit'])->name('item.edit');
-        Route::post('/{item}', [ItemController::class, 'update'])->name('item.update');
+        Route::put('/{item}', [ItemController::class, 'update'])->name('item.update');
         Route::delete('/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
     });
 });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('desc');
             $table->decimal('nominal', 15, 2);
             $table->enum('type', ['income', 'expense']);
-            $table->datetime('date')->useCurrent();
+            $table->date('date')->useCurrent();
             $table->timestamps();
 
             $table->foreign('manager_id')->references('id')->on('managers');

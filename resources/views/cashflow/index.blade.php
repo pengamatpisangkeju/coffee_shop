@@ -1,10 +1,9 @@
 @extends('layouts.admin-layout')
 
-@section('title', 'Item')
+@section('title', 'Cashflow')
 
 @section('content')
 	@push('styles')
-		<!-- DataTables -->
 		<link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
@@ -12,7 +11,7 @@
 
 	<div class="card">
 		<div class="card-header">
-			<a href="{{ route('item.create') }}" class="btn btn-primary">Create Item</a>
+			<a href="{{ route('cashflow.create') }}" class="btn btn-primary">Create Cashflow</a>
 		</div>
 		<div class="card-body">
 			@if(session('error'))
@@ -29,21 +28,19 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Name</th>
-						<th>Capital Price</th>
-						<th>Selling Price</th>
-						<th>Qty</th>
-						<th>Image</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Nominal</th>
+						<th>Type</th>
+						<th>Date</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 			</table>
 		</div>
-		<!-- /.card-body -->
 	</div>
 
 	@push('scripts')
-		<!-- DataTables  & Plugins -->
 		<script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 		<script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 		<script src="{{ asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -56,53 +53,30 @@
 		<script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 		<script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 		<script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-		<!-- Page specific script -->
 		<script>
 			$(function () {
 				$('.datatable').DataTable({
 					serverSide: true,
 					processing: true,
 					ajax: {
-						url: '{{ route('item.index') }}'
+						url: '{{ route('cashflow.index') }}'
 					},
 					columns: [
-						{ data: 'DT_RowIndex', orderable: false, searchable: false },
-						{ data: 'name' },
-						{
-							data: 'capital_price',
-							searchable: false,
-							render: function (data) {
-								return 'Rp' + parseFloat(data).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-							},
-						},
-						{
-							data: 'selling_price',
-							searchable: false,
-							render: function (data) {
-								return 'Rp' + parseFloat(data).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-							},
-						},
-						{ data: 'qty', searchable: false },
-						{
-							data: 'image_path',
-							orderable: false,
-							searchable: false,
-							render: function (data) {
-								if (data) {
-									return '<img src="{{ asset('storage/') }}/' + data + '" style="width: 50px; height: 50px; object-fit: cover;">';
-								} else {
-									return 'No Image';
-								}
-							},
-						},
-						{ data: 'action', orderable: false, searchable: false },
-					]
-				})
+						{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+						{ data: 'title', name: 'title' },
+						{ data: 'desc', name: 'desc' },
+						{ data: 'nominal', name: 'nominal', searchable: false },
+						{ data: 'type', name: 'type', searchable: false },
+						{ data: 'date', name: 'date', searchable: false },
+						{ data: 'action', name: 'action', orderable: false, searchable: false },
+					],
+					order: [[5, 'desc']] // Order by Date descending
+				});
 			});
 
-			function confirmDelete(itemId) {
-				if (confirm('Delete this item?')) {
-					document.getElementById('delete-item-' + itemId).submit();
+			function confirmDelete(cashflowId) {
+				if (confirm('Delete this cashflow?')) {
+					document.getElementById('delete-form-' + cashflowId).submit();
 				}
 			}
 		</script>

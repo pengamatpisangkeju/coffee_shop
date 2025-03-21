@@ -10,6 +10,7 @@ class Order extends Model
         'cashier_id',
         'order_number',
         'discount',
+        'discount_type',
         'date',
         'status',
         'payment_method_id',

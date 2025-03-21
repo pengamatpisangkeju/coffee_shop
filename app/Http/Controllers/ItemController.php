@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
-use Number;
 use Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,23 +16,10 @@ class ItemController extends Controller
 
             return DataTables::eloquent($items)
                 ->addIndexColumn()
-                ->addColumn('capital_price', function ($items) {
-                    return 'Rp' . number_format($items->capital_price, 2, ',', '.');
-                })
-                ->addColumn('selling_price', function ($items) {
-                    return 'Rp' . number_format($items->selling_price, 2, ',', '.');
-                })
-                ->addColumn('image', function ($items) {
-                    if ($items->image_path) {
-                        return '<img src="' . asset('storage/' . $items->image_path) . '" style="max-width: 50px; max-height: 50px;">';
-                    } else {
-                        return 'No Image';
-                    }
-                })
                 ->addColumn('action', function ($items) {
                     return '
                     <a href="' . route('item.edit', ['item' => $items->id]) . '" class="btn btn-primary btn-sm">Edit</a>
-                    <form id="delete-form-' . $items->id . '" action="' . route('item.destroy', ['item' => $items->id]) . '" method="POST" style="display: inline-block;">
+                    <form id="delete-item-' . $items->id . '" action="' . route('item.destroy', ['item' => $items->id]) . '" method="POST" style="display: inline-block;">
                         ' . csrf_field() . '
                         ' . method_field('DELETE') . '
                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(' . $items->id . ')">Delete</button>

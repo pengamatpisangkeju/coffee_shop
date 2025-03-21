@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Barista;
+use App\Models\Cashier;
+use App\Models\Manager;
+use App\Models\Owner;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -41,5 +45,41 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'barista',
         ]);
+
+        $managerUser = User::where('email', 'manager@example.com')->first();
+
+        if ($managerUser) {
+            Manager::create([
+                'user_id' => $managerUser->id,
+                'name' => 'John Manager', // You can change the name
+                'phone_number' => '1234567890', // Example phone number
+                'address' => '123 Manager St', // Example address
+                'monthly_wage' => 5000000, // Example monthly wage
+            ]);
+        }
+
+        $cashierUser = User::where('email', 'cashier@example.com')->first();
+
+        if ($cashierUser) {
+            Cashier::create([
+                'user_id' => $cashierUser->id,
+                'name' => 'Jane Cashier',
+                'phone_number' => '0987654321',
+                'address' => '456 Cashier Ave',
+                'monthly_wage' => 3000000,
+            ]);
+        }
+
+        $baristaUser = User::where('email', 'barista@example.com')->first();
+
+        if ($baristaUser) {
+            Barista::create([
+                'user_id' => $baristaUser->id,
+                'name' => 'Bob Barista',
+                'phone_number' => '1122334455',
+                'address' => '789 Barista Ln',
+                'monthly_wage' => 2500000,
+            ]);
+        }
     }
 }

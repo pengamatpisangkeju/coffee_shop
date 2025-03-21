@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemSupplyController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', fn() => redirect()->to('dashboard'));
 
 Route::group([

@@ -51,10 +51,10 @@ class UserSeeder extends Seeder
         if ($managerUser) {
             Manager::create([
                 'user_id' => $managerUser->id,
-                'name' => 'John Manager', // You can change the name
-                'phone_number' => '1234567890', // Example phone number
-                'address' => '123 Manager St', // Example address
-                'monthly_wage' => 5000000, // Example monthly wage
+                'name' => 'John Manager',
+                'phone_number' => '1234567890',
+                'address' => '123 Manager St',
+                'monthly_wage' => 5000000,
             ]);
         }
 

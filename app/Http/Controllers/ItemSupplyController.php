@@ -14,12 +14,15 @@ class ItemSupplyController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $itemSupplies = ItemSupply::with('item');
+            $itemSupplies = ItemSupply::with(['manager', 'item']);
 
             return DataTables::eloquent($itemSupplies)
                 ->addIndexColumn()
-                ->addColumn('item_name', function ($itemSupply) {
-                    return $itemSupply->item->name;
+                ->addColumn('manager_name', function($itemSupply) {
+                  return $itemSupply->manager->name;
+                })
+                ->addColumn('item_name', function($itemSupply) {
+                  return $itemSupply->item->name;
                 })
                 // ->addColumn('action', function ($itemSupply) {
                 //     return '
@@ -52,6 +55,7 @@ class ItemSupplyController extends Controller
         ]);
 
         $validated['manager_id'] = Auth::user()->manager->id;
+        $validated['date'] = now();
 
         DB::transaction(function () use ($validated) {
             ItemSupply::create($validated);

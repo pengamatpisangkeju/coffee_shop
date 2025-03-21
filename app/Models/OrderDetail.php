@@ -12,7 +12,6 @@ class OrderDetail extends Model
         'capital_price',
         'selling_price',
         'qty',
-        'status',
     ];
 
     public function order() {

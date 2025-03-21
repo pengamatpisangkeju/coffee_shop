@@ -59,3 +59,4 @@ $isPaymentMethodActive = in_array(Route::currentRouteName(), $paymentMethodRoute
 		</p>
 	</a>
 </li>
+<li class="nav-header">Report</li>

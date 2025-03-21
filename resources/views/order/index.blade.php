@@ -55,12 +55,6 @@
 						{ data: 'DT_RowIndex', orderable: false, searchable: false },
 						{ data: 'cashier_name' },
 						{ data: 'date' },
-						{
-							data: 'status',
-							render: function (data) {
-								return data.charAt(0) + data.slice(1)
-							}
-						},
 						{ data: 'payment_method_name' },
 						{
 							data: 'total_price',

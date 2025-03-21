@@ -38,13 +38,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'cashier',
         ]);
-        
-        User::create([
-            'name' => 'Barista',
-            'email' => 'barista@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'barista',
-        ]);
+
+        $ownerUser = User::where('email', 'owner@example.com')->first();
+
+        if ($ownerUser) {
+            Owner::create([
+                'user_id' => $ownerUser->id,
+                'name' => 'Katie Owner',
+                'phone_number' => '1234567890',
+                'address' => '123 Manager St',
+            ]);
+        }
 
         $managerUser = User::where('email', 'manager@example.com')->first();
 
@@ -67,18 +71,6 @@ class UserSeeder extends Seeder
                 'phone_number' => '0987654321',
                 'address' => '456 Cashier Ave',
                 'monthly_wage' => 3000000,
-            ]);
-        }
-
-        $baristaUser = User::where('email', 'barista@example.com')->first();
-
-        if ($baristaUser) {
-            Barista::create([
-                'user_id' => $baristaUser->id,
-                'name' => 'Bob Barista',
-                'phone_number' => '1122334455',
-                'address' => '789 Barista Ln',
-                'monthly_wage' => 2500000,
             ]);
         }
     }

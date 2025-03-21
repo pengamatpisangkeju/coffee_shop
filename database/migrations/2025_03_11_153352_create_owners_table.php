@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name', 20);
             $table->string('phone_number', 20)->unique();
             $table->string('address', 50);
-            $table->integer('monthly_wage');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();

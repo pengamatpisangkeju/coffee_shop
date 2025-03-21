@@ -1,7 +1,7 @@
 <li class="nav-header">Master Data</li>
 <li class="nav-item">
 	<?php
-$orderRoutes = ['order.index', 'order.create', 'order.edit'];
+$orderRoutes = ['order.index', 'order.create', 'order.detail'];
 $isOrderActive = in_array(Route::currentRouteName(), $orderRoutes);
 										?>
 	<a href="{{ route('order.index') }}" class="{{ $isOrderActive ? 'active' : '' }} nav-link">

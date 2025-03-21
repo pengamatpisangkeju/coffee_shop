@@ -38,7 +38,7 @@ class OrderController extends Controller
 				})
 				->addColumn('action', function ($order) {
 					return '
-            <a href="' . route('order.edit', ['order' => $order->id]) . '" class="btn btn-primary btn-sm">Edit</a>
+            <a href="' . route('order.detail', ['order' => $order->id]) . '" class="btn btn-primary btn-sm">Detail</a>
             <form id="delete-form-' . $order->id . '" action="' . route('order.destroy', ['order' => $order->id]) . '" method="POST" style="display: inline-block;">
                 ' . csrf_field() . '
                 ' . method_field('DELETE') . '
@@ -90,7 +90,6 @@ class OrderController extends Controller
 						'capital_price' => $item->capital_price,
 						'selling_price' => $item->selling_price,
 						'qty' => $qty,
-						'status' => 'pending',
 					]);
 
 					$item->update([
@@ -105,6 +104,12 @@ class OrderController extends Controller
 			DB::rollback();
 			return redirect()->back()->with('error', 'Failed to create order. ' . $e->getMessage());
 		}
+	}
+
+	public function show(Order $order)
+	{
+		$order->load(['cashier', 'paymentMethod', 'orderDetail.item']); // Eager load relations
+		return view('order.detail', ['order' => $order]);
 	}
 
 	public function edit(Order $order)

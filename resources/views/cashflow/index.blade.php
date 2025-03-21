@@ -28,6 +28,7 @@
 				<thead>
 					<tr>
 						<th>#</th>
+						<th>Manager Name</th>
 						<th>Title</th>
 						<th>Description</th>
 						<th>Nominal</th>
@@ -62,15 +63,26 @@
 						url: '{{ route('cashflow.index') }}'
 					},
 					columns: [
-						{ data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-						{ data: 'title', name: 'title' },
-						{ data: 'desc', name: 'desc' },
-						{ data: 'nominal', name: 'nominal', searchable: false },
-						{ data: 'type', name: 'type', searchable: false },
-						{ data: 'date', name: 'date', searchable: false },
+						{ data: 'DT_RowIndex', orderable: false, searchable: false },
+						{ data: 'manager_name' },
+						{ data: 'title' },
+						{ data: 'desc', orderable: false },
+						{ 
+							data: 'nominal',
+							render: function (data) {
+								return 'Rp' + parseFloat(data).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+							}
+						},
+						{ 
+							data: 'type',
+							searchable: false,
+							render: function (data) {
+								return data.charAt(0).toUpperCase() + data.slice(1)
+							}
+						},
+						{ data: 'date' },
 						{ data: 'action', name: 'action', orderable: false, searchable: false },
 					],
-					order: [[5, 'desc']] // Order by Date descending
 				});
 			});
 

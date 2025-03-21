@@ -18,15 +18,15 @@ class ItemController extends Controller
         ->addIndexColumn()
         ->addColumn('action', function ($items) {
           return '
-                    <a href="' . route('item.edit', ['item' => $items->id]) . '" class="btn btn-primary btn-sm">Edit</a>
-                    <form id="delete-item-' . $items->id . '" action="' . route('item.destroy', ['item' => $items->id]) . '" method="POST" style="display: inline-block;">
-                        ' . csrf_field() . '
-                        ' . method_field('DELETE') . '
-                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(' . $items->id . ')">Delete</button>
-                    </form>
-                ';
+            <a href="' . route('item.edit', ['item' => $items->id]) . '" class="btn btn-primary btn-sm">Edit</a>
+            <form id="delete-item-' . $items->id . '" action="' . route('item.destroy', ['item' => $items->id]) . '" method="POST" style="display: inline-block;">
+                ' . csrf_field() . '
+                ' . method_field('DELETE') . '
+                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(' . $items->id . ')">Delete</button>
+            </form>
+          ';
         })
-        ->rawColumns(['image', 'action'])
+        ->rawColumns(['action'])
         ->make(true);
     }
 
@@ -44,7 +44,7 @@ class ItemController extends Controller
       'name' => ['required', 'string', 'max:50'],
       'capital_price' => ['required', 'numeric', 'min:0'],
       'selling_price' => ['required', 'numeric', 'min:0'],
-      'desc' => ['nullable', 'string'],
+      'desc' => ['required', 'string'],
       'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
     ]);
 

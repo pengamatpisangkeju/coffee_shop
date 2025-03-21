@@ -13,7 +13,7 @@
 				<div class="form-group">
 					<label for="name">Name</label>
 					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-						placeholder="Enter name">
+						placeholder="Enter name" required>
 					@error('name')
 						<p class="text-danger">{{ $message }}</p>
 					@enderror
@@ -21,7 +21,7 @@
 				<div class="form-group">
 					<label>Description</label>
 					<textarea class="form-control @error('desc') is-invalid @enderror" name="desc" rows="3"
-						placeholder="Enter description"></textarea>
+						placeholder="Enter description" required></textarea>
 					@error('desc')
 						<p class="text-danger">{{ $message }}</p>
 					@enderror
@@ -31,7 +31,7 @@
 						<div class="form-group">
 							<label for="capitalPrice">Capital Price</label>
 							<input type="number" name="capital_price" class="form-control @error('capital_price') is-invalid @enderror"
-								id="capitalPrice" placeholder="Enter capital price">
+								id="capitalPrice" placeholder="Enter capital price" required>
 							@error('capital_price')
 								<p class="text-danger">{{ $message }}</p>
 							@enderror
@@ -41,7 +41,7 @@
 						<div class="form-group">
 							<label for="sellingPrice">Selling Price</label>
 							<input type="number" name="selling_price" class="form-control @error('selling_price') is-invalid @enderror"
-								id="sellingPrice" placeholder="Enter selling price">
+								id="sellingPrice" placeholder="Enter selling price" required>
 							@error('selling_price')
 								<p class="text-danger">{{ $message }}</p>
 							@enderror

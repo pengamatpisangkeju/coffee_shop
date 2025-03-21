@@ -35,3 +35,28 @@ $isCashflowActive = in_array(Route::currentRouteName(), $cashflowRoutes);
 		</p>
 	</a>
 </li>
+<li class="nav-header">Report</li>
+<li class="nav-item">
+	<?php
+$transactionReportRoutes = ['report.transaction']; // Tambahkan route untuk laporan transaksi
+$isTransactionReportActive = in_array(Route::currentRouteName(), $transactionReportRoutes);
+    ?>
+	<a href="{{ route('report.transaction') }}" class="{{ $isTransactionReportActive ? 'active' : '' }} nav-link">
+		<i class="nav-icon fas fa-file-invoice-dollar"></i>
+		<p>
+			Transaction
+		</p>
+	</a>
+</li>
+<li class="nav-item">
+	<?php
+$cashflowReportRoutes = ['report.cashflow']; // Tambahkan route untuk laporan cashflow
+$isCashflowReportActive = in_array(Route::currentRouteName(), $cashflowReportRoutes);
+    ?>
+	<a href="{{ route('report.cashflow') }}" class="{{ $isCashflowReportActive ? 'active' : '' }} nav-link">
+		<i class="nav-icon fas fa-chart-line"></i>
+		<p>
+			Cashflow
+		</p>
+	</a>
+</li>

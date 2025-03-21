@@ -8,7 +8,6 @@ class Order extends Model
 {
     protected $fillable = [
         'cashier_id',
-        'order_number',
         'discount',
         'discount_type',
         'date',

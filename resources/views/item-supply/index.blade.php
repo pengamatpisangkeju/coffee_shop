@@ -18,7 +18,7 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Manager Name</th>
+						<th>Manager</th>
 						<th>Item Name</th>
 						<th>Quantity</th>
 						<th>Date</th>

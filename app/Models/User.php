@@ -60,9 +60,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cashier::class);
     }
-
-    public function barista()
-    {
-        return $this->hasOne(Barista::class);
-    }
 }

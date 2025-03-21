@@ -28,7 +28,7 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Manager Name</th>
+						<th>Manager</th>
 						<th>Title</th>
 						<th>Description</th>
 						<th>Nominal</th>

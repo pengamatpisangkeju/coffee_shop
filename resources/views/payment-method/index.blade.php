@@ -1,6 +1,6 @@
 @extends('layouts.admin-layout')
 
-@section('title', 'Order')
+@section('title', 'Payment Method')
 
 @section('content')
 	@push('styles')
@@ -11,19 +11,25 @@
 
 	<div class="card">
 		<div class="card-header">
-			<a href="{{ route('order.create') }}" class="btn btn-primary">Create Order</a>
+			<a href="{{ route('payment-method.create') }}" class="btn btn-primary">Create Payment Method</a>
 		</div>
 		<div class="card-body">
+			@if(session('error'))
+				<div class="alert alert-danger">
+					{{ session('error') }}
+				</div>
+			@endif
+			@if(session('success'))
+				<div class="alert alert-success">
+					{{ session('success') }}
+				</div>
+			@endif
 			<table class="table table-bordered table-striped datatable">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Cashier</th>
-						<th>Date</th>
-						<th>Payment Method</th>
-						<th>Total Price</th>
-						<th>Total Items</th>
-						<th>Actions</th>
+						<th>Method</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 			</table>
@@ -49,34 +55,19 @@
 					serverSide: true,
 					processing: true,
 					ajax: {
-						url: '{{ route('order.index') }}'
+						url: '{{ route('payment-method.index') }}'
 					},
 					columns: [
 						{ data: 'DT_RowIndex', orderable: false, searchable: false },
-						{ data: 'cashier_name' },
-						{ data: 'date' },
-						{
-							data: 'status',
-							render: function (data) {
-								return data.charAt(0) + data.slice(1)
-							}
-						},
-						{ data: 'payment_method_name' },
-						{
-							data: 'total_price',
-							render: function (data) {
-								return 'Rp' + parseFloat(data).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-							}
-						}, // Menambahkan kolom total_price
-						{ data: 'total_items' }, // Menambahkan kolom total_items
+						{ data: 'method' },
 						{ data: 'action', orderable: false, searchable: false },
 					]
 				});
 			});
 
-			function confirmDelete(orderId) {
-				if (confirm('Delete this order?')) {
-					document.getElementById('delete-form-' + orderId).submit();
+			function confirmDelete(paymentmethodId) {
+				if (confirm('Delete this payment method?')) {
+					document.getElementById('delete-payment-method-' + paymentmethodId).submit();
 				}
 			}
 		</script>

@@ -26,7 +26,7 @@
 						<div class="form-group">
 							<label for="qty">Qty</label>
 							<input type="text" name="qty" value="{{ $item->qty }}"
-								class="form-control @error('qty') is-invalid @enderror" id="qty" placeholder="Enter quantity">
+								class="form-control @error('qty') is-invalid @enderror" id="qty" placeholder="Enter quantity" disabled>
 							@error('qty')
 								<p class="text-danger">{{ $message }}</p>
 							@enderror

@@ -42,12 +42,13 @@ class ItemController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'qty' => ['required', 'integer', 'min:0'],
             'capital_price' => ['required', 'numeric', 'min:0'],
             'selling_price' => ['required', 'numeric', 'min:0'],
             'desc' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
+
+        $validated['qty'] = 0;
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images/items', 'public');
@@ -68,7 +69,6 @@ class ItemController extends Controller
     {
         $validated = $request->validate([
             'name' => ['nullable', 'string', 'max:50'],
-            'qty' => ['nullable', 'integer', 'min:0'],
             'capital_price' => ['nullable', 'numeric', 'min:0'],
             'selling_price' => ['nullable', 'numeric', 'min:0'],
             'desc' => ['nullable', 'string'],

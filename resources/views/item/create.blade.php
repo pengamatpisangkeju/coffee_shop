@@ -10,27 +10,13 @@
 		<form action="{{ route('item.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="card-body">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-								placeholder="Enter name">
-							@error('name')
-								<p class="text-danger">{{ $message }}</p>
-							@enderror
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="qty">Qty</label>
-							<input type="number" name="qty" class="form-control @error('qty') is-invalid @enderror" id="qty"
-								placeholder="Enter quantity">
-							@error('qty')
-								<p class="text-danger">{{ $message }}</p>
-							@enderror
-						</div>
-					</div>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
+						placeholder="Enter name">
+					@error('name')
+						<p class="text-danger">{{ $message }}</p>
+					@enderror
 				</div>
 				<div class="form-group">
 					<label>Description</label>

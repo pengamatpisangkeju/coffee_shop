@@ -1,9 +1,9 @@
 <?php
-	$userData = match (Auth::user()->role) {
-		'owner' => Auth::user()->owner,
-		'manager' => Auth::user()->manager,
-		'cashier' => Auth::user()->cashier
-	}
+$userData = match (Auth::user()->role) {
+	'owner' => Auth::user()->owner,
+	'manager' => Auth::user()->manager,
+	'cashier' => Auth::user()->cashier
+}
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -16,7 +16,11 @@
 	<div class="sidebar">
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
-				<img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+				@if (Auth::user()->image_path)
+					<img src="{{ asset('storage/' . Auth::user()->image_path) }}" class="img-circle elevation-2" style="width:32px; height: 32px; object-fit: cover;" alt="User Image">
+				@else
+					<img src="{{ asset('adminlte/dist/img/boxed-bg.jpg') }}" class="img-circle elevation-2" style="width:32px; height: 32px; object-fit: cover;" alt="User Image">
+				@endif
 			</div>
 			<div class="info">
 				<a href="#" class="d-block">{{ $userData->name }}</a>

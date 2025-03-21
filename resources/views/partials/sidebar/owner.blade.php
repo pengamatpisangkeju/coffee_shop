@@ -1,6 +1,18 @@
 <li class="nav-header">Master Data</li>
 <li class="nav-item">
 	<?php
+$userRoutes = ['user.index', 'user.edit', 'user.create']; // Daftar route untuk User
+$isUserActive = in_array(Route::currentRouteName(), $userRoutes);
+    ?>
+	<a href="{{ route('user.index') }}" class="{{ $isUserActive ? 'active' : '' }} nav-link">
+		<i class="nav-icon fas fa-users"></i>
+		<p>
+			User
+		</p>
+	</a>
+</li>
+<li class="nav-item">
+	<?php
 $itemRoutes = ['item.index', 'item.create', 'item.edit'];
 $isItemActive = in_array(Route::currentRouteName(), $itemRoutes);
     ?>

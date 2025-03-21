@@ -11,14 +11,6 @@
 			@csrf
 			<div class="card-body">
 				<div class="form-group">
-					<label for="name">Name</label>
-					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-						placeholder="Enter name" required>
-					@error('name')
-						<p class="text-danger">{{ $message }}</p>
-					@enderror
-				</div>
-				<div class="form-group">
 					<label for="email">Email</label>
 					<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
 						placeholder="Enter email" required>
@@ -43,6 +35,38 @@
 						<option value="barista">Barista</option>
 					</select>
 					@error('role')
+						<p class="text-danger">{{ $message }}</p>
+					@enderror
+				</div>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
+						placeholder="Enter name" required>
+					@error('name')
+						<p class="text-danger">{{ $message }}</p>
+					@enderror
+				</div>
+				<div class="form-group">
+					<label for="phone_number">Phone Number</label>
+					<input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror"
+						id="phone_number" placeholder="Enter phone number">
+					@error('phone_number')
+						<p class="text-danger">{{ $message }}</p>
+					@enderror
+				</div>
+				<div class="form-group">
+					<label for="address">Address</label>
+					<input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address"
+						placeholder="Enter address">
+					@error('address')
+						<p class="text-danger">{{ $message }}</p>
+					@enderror
+				</div>
+				<div class="form-group">
+					<label for="monthly_wage">Monthly Wage</label>
+					<input type="number" name="monthly_wage" class="form-control @error('monthly_wage') is-invalid @enderror"
+						id="monthly_wage" placeholder="Enter monthly wage">
+					@error('monthly_wage')
 						<p class="text-danger">{{ $message }}</p>
 					@enderror
 				</div>

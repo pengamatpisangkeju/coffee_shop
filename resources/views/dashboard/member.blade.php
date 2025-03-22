@@ -1,6 +1,6 @@
 @extends('layouts.admin-layout')
 
-@section('title', 'Cashier Dashboard')
+@section('title', 'Member Dashboard')
 
 @section('content')
 @push('styles')
@@ -20,32 +20,6 @@
 	<!-- summernote -->
 	<link rel="stylesheet" href="{{ asset('adminlte/plugins/summernote/summernote-bs4.min.css') }}">
 @endpush
-
-<div class="row">
-	<div class="col-lg-3 col-6">
-		<div class="small-box bg-info">
-			<div class="inner">
-				<h3>{{ $totalOrdersToday }}</h3>
-				<p>Total Orders Today</p>
-			</div>
-			<div class="icon">
-				<i class="ion ion-bag"></i>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-lg-3 col-6">
-		<div class="small-box bg-success">
-			<div class="inner">
-				<h3>Rp {{ number_format($totalRevenueToday, 0, ',', '.') }}</h3>
-				<p>Total Revenue Today</p>
-			</div>
-			<div class="icon">
-				<i class="ion ion-cash"></i>
-			</div>
-		</div>
-	</div>
-</div>
 @push('scripts')
 		<!-- ChartJS -->
 		<script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>

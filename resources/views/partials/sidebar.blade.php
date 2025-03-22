@@ -2,7 +2,8 @@
 $userData = match (Auth::user()->role) {
 	'owner' => Auth::user()->owner,
 	'manager' => Auth::user()->manager,
-	'cashier' => Auth::user()->cashier
+	'cashier' => Auth::user()->cashier,
+	'member' => Auth::user()->member,
 }
 ?>
 
@@ -42,6 +43,8 @@ $userData = match (Auth::user()->role) {
 					@include('partials.sidebar.manager')
 				@elseif (Auth::user()->role == 'cashier')
 					@include('partials.sidebar.cashier')
+				@elseif (Auth::user()->role == 'member')
+					@include('partials.sidebar.member')
 				@endif
 			</ul>
 		</nav>

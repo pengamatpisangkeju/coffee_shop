@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cashier::class);
     }
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
+    }
 }

@@ -1,13 +1,13 @@
 @extends('layouts.admin-layout')
 
-@section('title', 'Create User')
+@section('title', 'Create Item')
 
 @section('content')
 	<div class="card card-primary">
 		<div class="card-header">
-			<h3 class="card-title">Create New User</h3>
+			<h3 class="card-title">Create New Item</h3>
 		</div>
-		<form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+		<form action="{{ route('item.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="card-body">
 				<div class="form-group">
@@ -19,32 +19,34 @@
 					@enderror
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
-						placeholder="Enter email" required>
-					@error('email')
+					<label>Description</label>
+					<textarea class="form-control @error('desc') is-invalid @enderror" name="desc" rows="3"
+						placeholder="Enter description" required></textarea>
+					@error('desc')
 						<p class="text-danger">{{ $message }}</p>
 					@enderror
 				</div>
-				<div class="form-group">
-					<label for="password">Password</label>
-					<input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-						id="password" placeholder="Enter password" required>
-					@error('password')
-						<p class="text-danger">{{ $message }}</p>
-					@enderror
-				</div>
-				<div class="form-group">
-					<label for="role">Role</label>
-					<select name="role" class="form-control @error('role') is-invalid @enderror" id="role" required>
-						<option value="owner">Owner</option>
-						<option value="manager">Manager</option>
-						<option value="cashier">Cashier</option>
-						<option value="barista">Barista</option>
-					</select>
-					@error('role')
-						<p class="text-danger">{{ $message }}</p>
-					@enderror
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="capitalPrice">Capital Price</label>
+							<input type="number" name="capital_price" class="form-control @error('capital_price') is-invalid @enderror"
+								id="capitalPrice" placeholder="Enter capital price" required>
+							@error('capital_price')
+								<p class="text-danger">{{ $message }}</p>
+							@enderror
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="sellingPrice">Selling Price</label>
+							<input type="number" name="selling_price" class="form-control @error('selling_price') is-invalid @enderror"
+								id="sellingPrice" placeholder="Enter selling price" required>
+							@error('selling_price')
+								<p class="text-danger">{{ $message }}</p>
+							@enderror
+						</div>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="image">Image</label>
@@ -66,12 +68,12 @@
 					<img id="previewImage" src="#" alt="Preview Image" style="max-width: 200px; max-height: 200px;">
 				</div>
 			</div>
+
 			<div class="card-footer">
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</form>
 	</div>
-
 	@push('scripts')
 		<script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 		<script>

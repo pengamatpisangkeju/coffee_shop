@@ -71,10 +71,37 @@ $isPaymentMethodActive = in_array(Route::currentRouteName(), $paymentMethodRoute
 		</p>
 	</a>
 </li>
+<!-- Tambahkan Member -->
+<li class="nav-item">
+	<?php
+$memberRoutes = ['member.index', 'member.create', 'member.edit'];
+$isMemberActive = in_array(Route::currentRouteName(), $memberRoutes);
+    ?>
+	<a href="{{ route('member.index') }}" class="{{ $isMemberActive ? 'active' : '' }} nav-link">
+		<i class="nav-icon fas fa-id-card"></i>
+		<p>
+			Member
+		</p>
+	</a>
+</li>
+<!-- Tambahkan Pengajuan -->
+<li class="nav-item">
+	<?php
+$pengajuanRoutes = ['pengajuan.index', 'pengajuan.create', 'pengajuan.edit'];
+$isPengajuanActive = in_array(Route::currentRouteName(), $pengajuanRoutes);
+    ?>
+	<a href="{{ route('pengajuan.index') }}" class="{{ $isPengajuanActive ? 'active' : '' }} nav-link">
+		<i class="nav-icon fas fa-file-alt"></i>
+		<p>
+			Pengajuan
+		</p>
+	</a>
+</li>
+
 <li class="nav-header">Report</li>
 <li class="nav-item">
 	<?php
-$transactionReportRoutes = ['report.transaction']; // Tambahkan route untuk laporan transaksi
+$transactionReportRoutes = ['report.transaction'];
 $isTransactionReportActive = in_array(Route::currentRouteName(), $transactionReportRoutes);
     ?>
 	<a href="{{ route('report.transaction') }}" class="{{ $isTransactionReportActive ? 'active' : '' }} nav-link">
@@ -86,7 +113,7 @@ $isTransactionReportActive = in_array(Route::currentRouteName(), $transactionRep
 </li>
 <li class="nav-item">
 	<?php
-$cashflowReportRoutes = ['report.cashflow']; // Tambahkan route untuk laporan cashflow
+$cashflowReportRoutes = ['report.cashflow'];
 $isCashflowReportActive = in_array(Route::currentRouteName(), $cashflowReportRoutes);
     ?>
 	<a href="{{ route('report.cashflow') }}" class="{{ $isCashflowReportActive ? 'active' : '' }} nav-link">

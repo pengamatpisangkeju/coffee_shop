@@ -37,7 +37,6 @@
 			</div>
 			<canvas id="transactionChart" width="400" height="200"></canvas>
 
-			<!-- Display Total Profit -->
 			<div class="alert alert-primary mt-4">
 				<strong>Total Profit:</strong> Rp <span id="totalProfit">{{$total_profit}}</span>
 			</div>
@@ -80,7 +79,6 @@
 	@push('scripts')
 		<script>
 			$(document).ready(function () {
-				// Initialize Chart
 				var ctx = document.getElementById('transactionChart').getContext('2d');
 				var transactionChart = new Chart(ctx, {
 					type: 'line',
@@ -103,7 +101,6 @@
 					}
 				});
 
-				// Filter button click event
 				$('#filter').click(function () {
 					var period = $('#period').val();
 					var month = $('#month').val();
@@ -114,12 +111,10 @@
 						type: 'GET',
 						data: { period: period, month: month, year: year },
 						success: function (response) {
-							// Update chart data
 							transactionChart.data.labels = response.labels;
 							transactionChart.data.datasets[0].data = response.data;
 							transactionChart.update();
 
-							// Reload table content
 							var tableBody = '';
 							response.orders.forEach(function (order, index) {
 								tableBody += `
@@ -135,7 +130,6 @@
 							});
 							$('#ordersTable tbody').html(tableBody);
 
-							// Update total profit
 							$('#totalProfit').text(response.total_profit);
 						}
 					});

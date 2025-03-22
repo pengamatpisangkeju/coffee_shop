@@ -67,19 +67,15 @@ class UserController extends Controller
 			'monthly_wage' => ['nullable', 'numeric', 'min:0'],
 		]);
 
-		// Hash password
 		$validated['password'] = bcrypt($request->password);
 
-		// Upload image
 		if ($request->hasFile('image')) {
 			$imagePath = $request->file('image')->store('images/users', 'public');
 			$validated['image_path'] = $imagePath;
 		}
 
-		// Buat user
 		$user = User::create($validated);
 
-		// Simpan data tambahan berdasarkan role
 		switch ($request->role) {
 			case 'owner':
 				Owner::create([
@@ -133,14 +129,12 @@ class UserController extends Controller
 			'monthly_wage' => ['nullable', 'numeric', 'min:0'],
 		]);
 
-		// Update password if provided
 		if ($request->filled('password')) {
 			$validated['password'] = bcrypt($request->password);
 		} else {
 			unset($validated['password']);
 		}
 
-		// Update image if provided
 		if ($request->hasFile('image')) {
 			if ($user->image_path) {
 				Storage::disk('public')->delete($user->image_path);
@@ -150,10 +144,8 @@ class UserController extends Controller
 			$validated['image_path'] = $imagePath;
 		}
 
-		// Update user
 		$user->update($validated);
 
-		// Update data tambahan berdasarkan role
 		switch ($user->role) {
 			case 'owner':
 				$owner = Owner::where('user_id', $user->id)->first();

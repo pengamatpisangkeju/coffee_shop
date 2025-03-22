@@ -5,8 +5,10 @@ use App\Http\Controllers\CashflowController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemSupplyController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ReportController; // Tambahkan import ReportController
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +83,29 @@ Route::group([
 		Route::put('/{order}', [OrderController::class, 'update'])->name('order.update');
 		Route::delete('/{order}', [OrderController::class, 'destroy'])->name('order.destroy');
 	});
+
+	Route::group([
+		'prefix' => 'pengajuan',
+], function () {
+		Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
+		Route::get('/create', [PengajuanController::class, 'create'])->name('pengajuan.create');
+		Route::post('/', [PengajuanController::class, 'store'])->name('pengajuan.store');
+		Route::get('/{pengajuan}', [PengajuanController::class, 'edit'])->name('pengajuan.edit');
+		Route::put('/{pengajuan}', [PengajuanController::class, 'update'])->name('pengajuan.update');
+		Route::delete('/{pengajuan}', [PengajuanController::class, 'destroy'])->name('pengajuan.destroy');
+});
+
+// Route untuk Member CRUD
+Route::group([
+		'prefix' => 'member',
+], function () {
+		Route::get('/', [MemberController::class, 'index'])->name('member.index');
+		Route::get('/create', [MemberController::class, 'create'])->name('member.create');
+		Route::post('/', [MemberController::class, 'store'])->name('member.store');
+		Route::get('/{member}', [MemberController::class, 'edit'])->name('member.edit');
+		Route::put('/{member}', [MemberController::class, 'update'])->name('member.update');
+		Route::delete('/{member}', [MemberController::class, 'destroy'])->name('member.destroy');
+});
 
 	Route::group([
 		'prefix' => 'payment-method',

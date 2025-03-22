@@ -22,7 +22,6 @@
 	@endpush
 
 	<div class="row">
-		<!-- Total Orders This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-info">
 				<div class="inner">
@@ -35,7 +34,6 @@
 			</div>
 		</div>
 
-		<!-- Total Items Sold This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-success">
 				<div class="inner">
@@ -48,7 +46,6 @@
 			</div>
 		</div>
 
-		<!-- Total Revenue This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-warning">
 				<div class="inner">
@@ -61,7 +58,6 @@
 			</div>
 		</div>
 
-		<!-- Total Expenses This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-danger">
 				<div class="inner">
@@ -74,7 +70,6 @@
 			</div>
 		</div>
 
-		<!-- Cashflow Revenue This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-primary">
 				<div class="inner">
@@ -87,7 +82,6 @@
 			</div>
 		</div>
 
-		<!-- Cashflow Expenses This Month -->
 		<div class="col-lg-3 col-6">
 			<div class="small-box bg-secondary">
 				<div class="inner">

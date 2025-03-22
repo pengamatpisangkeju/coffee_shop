@@ -18,7 +18,6 @@ class ReportController extends Controller
 		$labels = [];
 		$data = [];
 
-		// Query for chart data
 		$chartQuery = Order::query();
 
 		if ($period === 'monthly') {
@@ -73,7 +72,6 @@ class ReportController extends Controller
 			}
 		}
 
-		// Query for orders table
 		$ordersQuery = Order::with(['cashier', 'paymentMethod', 'orderDetail.item']);
 		if ($period === 'monthly') {
 			if ($year && $month) {
@@ -99,7 +97,6 @@ class ReportController extends Controller
 
 		$orders = $ordersQuery->get();
 
-		// Calculate total profit for the selected period
 		$totalProfit = $orders->sum(function ($order) {
 			return $order->orderDetail->sum(function ($detail) {
 				return ($detail->selling_price - $detail->capital_price) * $detail->qty;
@@ -107,7 +104,6 @@ class ReportController extends Controller
 		});
 
 		if ($request->ajax()) {
-			// Prepare orders data for the table
 			$formattedOrders = $orders->map(function ($order) {
 				$totalPrice = $order->orderDetail->sum(function ($detail) {
 					return $detail->selling_price * $detail->qty;
@@ -152,7 +148,6 @@ class ReportController extends Controller
 		$dataIncome = [];
 		$dataExpense = [];
 
-		// Query for cashflow data
 		$cashflowQuery = Cashflow::query();
 
 		if ($period === 'monthly') {
@@ -167,7 +162,6 @@ class ReportController extends Controller
 					$dayEnd = $date->copy()->endOfDay();
 					$labels[] = $date->format('d');
 
-					// Calculate daily income and expense
 					$dataIncome[] = Cashflow::whereBetween('date', [$dayStart, $dayEnd])
 						->where('type', 'income')
 						->sum('nominal');
@@ -187,7 +181,6 @@ class ReportController extends Controller
 					$dayEnd = $date->copy()->endOfDay();
 					$labels[] = $date->format('d');
 
-					// Calculate daily income and expense
 					$dataIncome[] = Cashflow::whereBetween('date', [$dayStart, $dayEnd])
 						->where('type', 'income')
 						->sum('nominal');
@@ -208,7 +201,6 @@ class ReportController extends Controller
 					$monthEnd = Carbon::createFromDate($year, $i, 1)->endOfMonth();
 					$labels[] = Carbon::createFromDate($year, $i, 1)->format('M');
 
-					// Calculate monthly income and expense
 					$dataIncome[] = Cashflow::whereBetween('date', [$monthStart, $monthEnd])
 						->where('type', 'income')
 						->sum('nominal');
@@ -227,7 +219,6 @@ class ReportController extends Controller
 					$monthEnd = Carbon::createFromDate(Carbon::now()->year, $i, 1)->endOfMonth();
 					$labels[] = Carbon::createFromDate(Carbon::now()->year, $i, 1)->format('M');
 
-					// Calculate monthly income and expense
 					$dataIncome[] = Cashflow::whereBetween('date', [$monthStart, $monthEnd])
 						->where('type', 'income')
 						->sum('nominal');
@@ -239,10 +230,8 @@ class ReportController extends Controller
 			}
 		}
 
-		// Get cashflow data for the table
 		$cashflows = $cashflowQuery->get();
 
-		// Calculate total income and expense
 		$totalIncome = $cashflows->where('type', 'income')->sum('nominal');
 		$totalExpense = $cashflows->where('type', 'expense')->sum('nominal');
 

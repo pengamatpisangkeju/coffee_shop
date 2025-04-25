@@ -8,13 +8,14 @@ use App\Http\Controllers\ItemSupplyController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentMethodController;
-use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ReportController; // Tambahkan import ReportController
+use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// Route::resource('test', AuthController::class);
 
-Route::get('/', fn() => redirect()->to('dashboard'));
 
 Route::group([
 	'middleware' => 'guest'
@@ -85,15 +86,17 @@ Route::group([
 	});
 
 	Route::group([
-		'prefix' => 'pengajuan',
+		'prefix' => 'submission',
 ], function () {
-		Route::get('/', [PengajuanController::class, 'index'])->name('pengajuan.index');
-		Route::get('/create', [PengajuanController::class, 'create'])->name('pengajuan.create');
-		Route::post('/', [PengajuanController::class, 'store'])->name('pengajuan.store');
-		Route::get('/{pengajuan}', [PengajuanController::class, 'edit'])->name('pengajuan.edit');
-		Route::put('/{pengajuan}', [PengajuanController::class, 'update'])->name('pengajuan.update');
-		Route::delete('/{pengajuan}', [PengajuanController::class, 'destroy'])->name('pengajuan.destroy');
-});
+		Route::get('/', [SubmissionController::class, 'index'])->name('submission.index');
+		Route::get('/create', [SubmissionController::class, 'create'])->name('submission.create');
+		Route::post('/', [SubmissionController::class, 'store'])->name('submission.store');
+		Route::get('/{submission}', [SubmissionController::class, 'edit'])->name('submission.edit');
+		Route::put('/{submission}', [SubmissionController::class, 'update'])->name('submission.update');
+		Route::delete('/{submission}', [SubmissionController::class, 'destroy'])->name('submission.destroy');
+		Route::get('/submission/{submission}/accept', [SubmissionController::class, 'accept'])->name('submission.accept');
+		Route::get('/submission/{submission}/decline', [SubmissionController::class, 'decline'])->name('submission.decline');
+	});
 
 // Route untuk Member CRUD
 Route::group([

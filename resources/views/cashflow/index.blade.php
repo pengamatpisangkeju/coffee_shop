@@ -10,9 +10,11 @@
 	@endpush
 
 	<div class="card">
-		<div class="card-header">
-			<a href="{{ route('cashflow.create') }}" class="btn btn-primary">Create Cashflow</a>
-		</div>
+		@if (Auth::user()->role == 'manager')
+			<div class="card-header">
+				<a href="{{ route('cashflow.create') }}" class="btn btn-primary">Create Cashflow</a>
+			</div>
+		@endif
 		<div class="card-body">
 			@if(session('error'))
 				<div class="alert alert-danger">
@@ -67,13 +69,13 @@
 						{ data: 'manager_name' },
 						{ data: 'title' },
 						{ data: 'desc', orderable: false },
-						{ 
+						{
 							data: 'nominal',
 							render: function (data) {
 								return 'Rp' + parseFloat(data).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 							}
 						},
-						{ 
+						{
 							data: 'type',
 							searchable: false,
 							render: function (data) {

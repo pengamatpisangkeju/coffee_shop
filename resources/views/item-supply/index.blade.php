@@ -10,9 +10,11 @@
 	@endpush
 
 	<div class="card">
-		<div class="card-header">
-			<a href="{{ route('item-supply.create') }}" class="btn btn-primary">Add Item Supply</a>
-		</div>
+		@if (Auth::user()->role == 'manager')
+			<div class="card-header">
+				<a href="{{ route('item-supply.create') }}" class="btn btn-primary">Add Item Supply</a>
+			</div>
+		@endif
 		<div class="card-body">
 			<table class="table table-bordered table-striped datatable">
 				<thead>

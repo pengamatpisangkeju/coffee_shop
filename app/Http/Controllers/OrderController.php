@@ -37,6 +37,8 @@ class OrderController extends Controller
 					return $order->paymentMethod->method;
 				})
 				->addColumn('action', function ($order) {
+					if (Auth::user()->role != 'cashier') return '-';
+					
 					return '
             <a href="' . route('order.detail', ['order' => $order->id]) . '" class="btn btn-primary btn-sm">Detail</a>
             <form id="delete-form-' . $order->id . '" action="' . route('order.destroy', ['order' => $order->id]) . '" method="POST" style="display: inline-block;">

@@ -31,9 +31,13 @@
                     </div>
                 </form>
 
-                @error('email')
-                    <p class="mt-3 text-danger text-center">{{ $message }}</p>
+                @error('login')
+                    <p class="text-danger">{{ $message }}</p>
                 @enderror
+
+                <!-- @error('email')
+                    <p class="mt-3 text-danger text-center">{{ $message }}</p>
+                @enderror -->
             </div>
         </div>
 @endsection

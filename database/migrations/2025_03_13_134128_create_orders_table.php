@@ -13,7 +13,7 @@ return new class extends Migration {
 		Schema::create('orders', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('cashier_id');
-			$table->integer('discount')->nullable();
+			$table->decimal('discount', 15, 2)->nullable();
 			$table->enum('discount_type', ['amount', 'percentage'])->nullable();
 			$table->datetime('date')->useCurrent();
 			$table->unsignedBigInteger('payment_method_id');

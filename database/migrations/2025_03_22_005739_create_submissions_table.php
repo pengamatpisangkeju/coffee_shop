@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengajuans', function (Blueprint $table) {
+        Schema::create('submissions', function (Blueprint $table) {
             $table->id();
 						$table->unsignedBigInteger('member_id');
-						$table->string('nama_barang');
-						$table->date('tanggal');
+						$table->string('message');
+						$table->date('date');
 						$table->enum('status', ['pending', 'accepted', 'declined']);
             $table->timestamps();
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuans');
+        Schema::dropIfExists('submissions');
     }
 };

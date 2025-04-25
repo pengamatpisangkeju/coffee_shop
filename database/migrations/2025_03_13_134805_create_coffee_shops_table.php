@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('coffee_shops', function (Blueprint $table) {
             $table->id();
-            $table->string('shop_name', 50);
-            $table->string('image_path');
-            $table->string('phone_number', 20);
-            $table->text('address');
-            $table->text('footer_message');
+            $table->string('shop_name', 50)->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('phone_number', 20)->nullable();
+            $table->text('address')->nullable();
+            $table->text('footer_message')->nullable();
+						$table->decimal('balance', 15, 2)->default(0);
             $table->timestamps();
         });
     }

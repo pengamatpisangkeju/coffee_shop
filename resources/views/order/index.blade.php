@@ -10,9 +10,11 @@
 	@endpush
 
 	<div class="card">
-		<div class="card-header">
-			<a href="{{ route('order.create') }}" class="btn btn-primary">Create Order</a>
-		</div>
+		@if (Auth::user()->role == 'cashier')
+			<div class="card-header">
+				<a href="{{ route('order.create') }}" class="btn btn-primary">Create Order</a>
+			</div>
+		@endif
 		<div class="card-body">
 			<table class="table table-bordered table-striped datatable">
 				<thead>

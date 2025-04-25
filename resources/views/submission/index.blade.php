@@ -11,9 +11,12 @@
 	@endpush
 
 	<div class="card">
-		<div class="card-header">
-			<a href="{{ route('pengajuan.create') }}" class="btn btn-primary">Create Pengajuan</a>
-		</div>
+		@if (Auth::user()->role == 'member')
+			<div class="card-header">
+				<a href="{{ route('submission.create') }}" class="btn btn-primary">Create Pengajuan</a>
+			</div>
+
+		@endif
 		<div class="card-body">
 			@if(session('error'))
 				<div class="alert alert-danger">
@@ -62,7 +65,7 @@
 					serverSide: true,
 					processing: true,
 					ajax: {
-						url: '{{ route('pengajuan.index') }}'
+						url: '{{ route('submission.index') }}'
 					},
 					columns: [
 						{ data: 'DT_RowIndex', orderable: false, searchable: false },

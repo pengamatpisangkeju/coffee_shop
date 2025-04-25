@@ -20,6 +20,8 @@ class CashflowController extends Controller
           return $cashflow->manager->name;
         })
         ->addColumn('action', function ($cashflow) {
+					if (Auth::user()->role != 'manager') return '-';
+
           return '
             <a href="' . route('cashflow.edit', ['cashflow' => $cashflow->id]) . '" class="btn btn-primary btn-sm">Edit</a>
             <form id="delete-form-' . $cashflow->id . '" action="' . route('cashflow.destroy', ['cashflow' => $cashflow->id]) . '" method="POST" style="display: inline-block;">

@@ -15,12 +15,13 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		if ($request->ajax()) {
-			$users = User::with(['owner', 'manager', 'cashier']);
+			$users = User
+				::with(['owner', 'manager', 'cashier'])
+				->where('role', '!=', 'member');
 
 			return DataTables::eloquent($users)
 				->addIndexColumn()
 				->addColumn('name', function ($user) {
-					// Determine the name based on the role
 					switch ($user->role) {
 						case 'owner':
 							return $user->owner->name ?? 'N/A';
@@ -60,7 +61,7 @@ class UserController extends Controller
 			'name' => ['required', 'string', 'max:255'], // Name sekarang disimpan di tabel terkait
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'password' => ['required', 'string', 'min:8'],
-			'role' => ['required', 'in:owner,manager,cashier,barista'],
+			'role' => ['required', 'in:owner,manager,cashier'],
 			'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
 			'phone_number' => ['nullable', 'string', 'max:20'],
 			'address' => ['nullable', 'string', 'max:255'],
@@ -122,7 +123,7 @@ class UserController extends Controller
 			'name' => ['nullable', 'string', 'max:255'], // Name sekarang disimpan di tabel terkait
 			'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
 			'password' => ['nullable', 'string', 'min:8'],
-			'role' => ['nullable', 'in:owner,manager,cashier,barista'],
+			'role' => ['nullable', 'in:owner,manager,cashier'],
 			'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
 			'phone_number' => ['nullable', 'string', 'max:20'],
 			'address' => ['nullable', 'string', 'max:255'],

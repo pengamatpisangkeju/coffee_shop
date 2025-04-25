@@ -1,7 +1,7 @@
 <li class="nav-header">Master Data</li>
 <li class="nav-item">
 	<?php
-$userRoutes = ['user.index', 'user.edit', 'user.create']; // Daftar route untuk User
+$userRoutes = ['user.index', 'user.edit', 'user.create'];
 $isUserActive = in_array(Route::currentRouteName(), $userRoutes);
     ?>
 	<a href="{{ route('user.index') }}" class="{{ $isUserActive ? 'active' : '' }} nav-link">
@@ -87,10 +87,10 @@ $isMemberActive = in_array(Route::currentRouteName(), $memberRoutes);
 <!-- Tambahkan Pengajuan -->
 <li class="nav-item">
 	<?php
-$pengajuanRoutes = ['pengajuan.index', 'pengajuan.create', 'pengajuan.edit'];
+$pengajuanRoutes = ['submission.index', 'submission.create', 'submission.edit'];
 $isPengajuanActive = in_array(Route::currentRouteName(), $pengajuanRoutes);
     ?>
-	<a href="{{ route('pengajuan.index') }}" class="{{ $isPengajuanActive ? 'active' : '' }} nav-link">
+	<a href="{{ route('submission.index') }}" class="{{ $isPengajuanActive ? 'active' : '' }} nav-link">
 		<i class="nav-icon fas fa-file-alt"></i>
 		<p>
 			Pengajuan

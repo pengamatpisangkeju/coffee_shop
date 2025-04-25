@@ -94,10 +94,19 @@
 			</div>
 		</div>
 	</div>
+
 	@push('scripts')
 		<!-- ChartJS -->
 		<script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
 		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 		<script src="{{ asset('adminlte/dist/js/pages/dashboard.js') }}"></script>
+		<script>
+			const socket = io('http://localhost:9000'); // Sesuaikan dengan URL WebSocket Anda
+
+			socket.on('connect', () => {
+				console.log('Connected to WebSocket server');
+				socket.emit('userConnected', '{{ Auth::id() }}'); // Kirim ID pengguna yang terhubung
+			});
+		</script>
 	@endpush
 @endsection
